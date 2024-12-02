@@ -10,7 +10,7 @@ form.addEventListener("submit", function (e) {
 
   const zutaten = []; // Array, um Zutaten und Mengen zu speichern
 
-  // Alle Eingaben für Zutaten auslesen
+  // eingaben der zutaten
   for (let i = 0; i < zutatenAnzahl; i++) {
     const zutatName = document.getElementById(`zutat-${i}`).value;
     const menge = document.getElementById(`menge-${i}`).value;
@@ -19,6 +19,8 @@ form.addEventListener("submit", function (e) {
 
   console.log(`Rezept hinzugefügt: ${rezeptname}, Rezeptart: ${rezeptart}`);
   console.log("Zutaten:", zutaten);
+
+  form.reset();
 });
 
 document.getElementById("zutatenAnzahl").addEventListener("input", function () {
