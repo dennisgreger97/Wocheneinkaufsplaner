@@ -17,3 +17,9 @@ button {
   padding: 5px;
   font-size: 1em;
 }
+
+#zutatenListe {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
