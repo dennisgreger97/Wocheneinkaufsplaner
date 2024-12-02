@@ -4,8 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Einkaufsplaner</title>
+    <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    "HallO"
+    <section>
+      <form id="rezepteingabe">
+        <label for="rezeptname">Rezeptname:</label>
+        <input type="text" id="rezeptname" required />
+
+        <label for="rezeptart">Rezeptart?</label>
+        <select id="rezeptart">
+          <option value="Frühstück">Frühstück</option>
+          <option value="Mittag">Mittag</option>
+          <option value="Abendessen">Abendessen</option>
+        </select>
+
+        <label for="zutatenAnzahl">Anzahl der Zutaten:</label>
+        <input type="number" id="zutatenAnzahl" required />
+
+        <div id="zutatenListe"></div>
+
+        <button type="submit">Hinzufügen</button>
+      </form>
+    </section>
+
+    <script src="./script.js"></script>
   </body>
 </html>
