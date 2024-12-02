@@ -1,6 +1,9 @@
 const form = document.getElementById("rezepteingabe");
 const zutatenListe = document.getElementById("zutatenListe");
 const rezepte = [];
+const fruehstueckListe = document.getElementById("fruehstueckListe");
+const mittagListe = document.getElementById("mittagListe");
+const abendListe = document.getElementById("abendListe");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault(); // verhindert das Neuladen der Seite
@@ -26,7 +29,17 @@ form.addEventListener("submit", function (e) {
 
   rezepte.push(rezept);
 
-  console.log(rezepte);
+  // rezeptuebersicht erstellen
+  const liItem = document.createElement("li");
+  liItem.textContent = rezeptname;
+
+  if (rezeptart === "Frühstück") {
+    fruehstueckListe.appendChild(liItem);
+  } else if (rezeptart === "Mittag") {
+    mittagListe.appendChild(liItem);
+  } else if (rezeptart === "Abendessen") {
+    abendListe.appendChild(liItem);
+  }
 
   alert(
     `Dein Rezept "${rezeptname}" wurde erfolgreich der Rezeptesammlung hinzugefügt!`
