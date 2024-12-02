@@ -28,9 +28,13 @@ form.addEventListener("submit", function (e) {
 
   console.log(rezepte);
 
+  alert(
+    `Dein Rezept "${rezeptname}" wurde erfolgreich der Rezeptesammlung hinzugefügt!`
+  );
   form.reset();
 });
 
+// eventlistener input um auf veränderungen im eingabefeld zu reagieren
 document.getElementById("zutatenAnzahl").addEventListener("input", function () {
   const anzahl = parseInt(this.value, 10) || 0;
 
