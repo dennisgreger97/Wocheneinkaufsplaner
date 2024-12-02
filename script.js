@@ -1,5 +1,6 @@
 const form = document.getElementById("rezepteingabe");
 const zutatenListe = document.getElementById("zutatenListe");
+const rezepte = [];
 
 form.addEventListener("submit", function (e) {
   e.preventDefault(); // verhindert das Neuladen der Seite
@@ -14,11 +15,18 @@ form.addEventListener("submit", function (e) {
   for (let i = 0; i < zutatenAnzahl; i++) {
     const zutatName = document.getElementById(`zutat-${i}`).value;
     const menge = document.getElementById(`menge-${i}`).value;
-    zutaten.push({ name: zutatName, menge: menge });
+    zutaten.push({ name: zutatName, menge: menge }); //als objekt in das zutaten array pushen
   }
 
-  console.log(`Rezept hinzugefügt: ${rezeptname}, Rezeptart: ${rezeptart}`);
-  console.log("Zutaten:", zutaten);
+  const rezept = {
+    name: rezeptname,
+    art: rezeptart,
+    zutaten: zutaten,
+  };
+
+  rezepte.push(rezept);
+
+  console.log(rezepte);
 
   form.reset();
 });
@@ -29,7 +37,7 @@ document.getElementById("zutatenAnzahl").addEventListener("input", function () {
   // Vorherige Zutaten-Eingabefelder löschen
   zutatenListe.innerHTML = "";
 
-  // Neue Eingabefelder erstellen
+  // funktion zur flexiblen anzeige der zutaten inputs
   for (let i = 0; i < anzahl; i++) {
     const zutatDiv = document.createElement("div");
     zutatDiv.innerHTML = `
