@@ -43,6 +43,8 @@ h2 {
 
 #thirdSection {
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 #essenPlaner h3 {
@@ -51,4 +53,5 @@ h2 {
 
 #thirdSection button {
   width: 300px;
+  margin-top: 10px;
 }

@@ -66,3 +66,102 @@ document.getElementById("zutatenAnzahl").addEventListener("input", function () {
     zutatenListe.appendChild(zutatDiv);
   }
 });
+
+// umsetzung des wochenplaners
+const fruehstueckPlaner = document.getElementById("fruehstueckPlaner");
+const mittagPlaner = document.getElementById("mittagPlaner");
+const abendPlaner = document.getElementById("abendPlaner");
+const startButton = document.getElementById("startPlanerButton");
+const resetButton = document.getElementById("planReset");
+const essenPlaner = document.getElementById("essenPlaner");
+
+// Array zum Speichern der geplanten Mahlzeiten
+let wochenplan = [];
+
+// Funktion zur Erstellung eines Formulars für einen Mahlzeitentyp
+function createMealPlanner(section, mealType) {
+  section.innerHTML = ""; // Leert die Sektion vor dem Hinzufügen
+
+  for (let i = 0; i < 7; i++) {
+    const mealDiv = document.createElement("div");
+    mealDiv.classList.add("meal-input");
+    mealDiv.innerHTML = `
+      <select class="${mealType}-select">
+        <option value="" disabled selected>Wähle ein Rezept</option>
+        ${rezepte
+          .filter((rezept) => rezept.art === mealType)
+          .map(
+            (rezept) => `<option value="${rezept.name}">${rezept.name}</option>`
+          )
+          .join("")}
+      </select>
+    `;
+    section.appendChild(mealDiv);
+  }
+}
+
+// Funktion zum Starten des Planers
+function initializeMealPlanner() {
+  createMealPlanner(fruehstueckPlaner, "Frühstück");
+  createMealPlanner(mittagPlaner, "Mittag");
+  createMealPlanner(abendPlaner, "Abendessen");
+
+  // Tausche den Start-Button gegen einen Bestätigen-Button
+  startButton.style.display = "none";
+  const confirmButton = document.createElement("button");
+  confirmButton.id = "confirmPlanButton";
+  confirmButton.textContent = "Bestätigen";
+  essenPlaner.appendChild(confirmButton);
+
+  confirmButton.addEventListener("click", saveMealPlan);
+}
+
+// Funktion zum Speichern des Wochenplans
+function saveMealPlan() {
+  wochenplan = []; // Leert den alten Wochenplan
+
+  // Rezepte aus den Formularen sammeln
+  collectMeals(fruehstueckPlaner, "Frühstück");
+  collectMeals(mittagPlaner, "Mittag");
+  collectMeals(abendPlaner, "Abendessen");
+
+  console.log("Geplanter Wochenplan:", wochenplan);
+  alert("Dein Wochenplan wurde gespeichert!");
+}
+
+// Hilfsfunktion zum Sammeln der Rezepte
+function collectMeals(section, mealType) {
+  const mealInputs = section.querySelectorAll(".meal-input");
+
+  mealInputs.forEach((mealInput) => {
+    const recipeSelect = mealInput.querySelector(`.${mealType}-select`);
+
+    if (recipeSelect.value) {
+      wochenplan.push({
+        typ: mealType,
+        rezept: recipeSelect.value,
+      });
+    }
+  });
+}
+
+// Funktion zum Zurücksetzen des Planers
+function resetMealPlanner() {
+  fruehstueckPlaner.innerHTML = "";
+  mittagPlaner.innerHTML = "";
+  abendPlaner.innerHTML = "";
+  wochenplan = []; // Wochenplan leeren
+
+  // Falls der Bestätigen-Button existiert, entfernen
+  const confirmButton = document.getElementById("confirmPlanButton");
+  if (confirmButton) {
+    confirmButton.remove();
+  }
+
+  // Start-Button wieder anzeigen
+  startButton.style.display = "inline-block";
+}
+
+// Event-Listener für die Buttons
+startButton.addEventListener("click", initializeMealPlanner);
+resetButton.addEventListener("click", resetMealPlanner);
