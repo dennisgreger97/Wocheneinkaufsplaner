@@ -7,52 +7,142 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <section id="firstSection">
-      <form id="rezepteingabe">
-        <label for="rezeptname">Rezeptname:</label>
-        <input type="text" id="rezeptname" required />
+    <div id="container">
+      <div id="linkeSeite">
+        <section id="firstSection">
+          <h2>Rezepteingabe:</h2>
+          <form id="rezepteingabe">
+            <label for="rezeptname">Rezeptname:</label>
+            <input type="text" id="rezeptname" required />
 
-        <label for="rezeptart">Rezeptart?</label>
-        <select id="rezeptart">
-          <option value="Frühstück">Frühstück</option>
-          <option value="Mittag">Mittag</option>
-          <option value="Abendessen">Abendessen</option>
-        </select>
+            <label for="rezeptart">Rezeptart?</label>
+            <select id="rezeptart">
+              <option value="Frühstück">Frühstück</option>
+              <option value="Mittag">Mittag</option>
+              <option value="Abendessen">Abendessen</option>
+            </select>
 
-        <label for="zutatenAnzahl">Anzahl der Zutaten:</label>
-        <input type="number" id="zutatenAnzahl" required />
+            <label for="zutatenAnzahl">Anzahl der Zutaten:</label>
+            <input type="number" id="zutatenAnzahl" required />
 
-        <div id="zutatenListe"></div>
+            <div id="zutatenListe"></div>
 
-        <button type="submit">Hinzufügen</button>
-      </form>
-    </section>
+            <button type="submit">Hinzufügen</button>
+          </form>
+        </section>
 
-    <section id="seceondSection">
-      <h2>Rezeptübersicht:</h2>
-      <div id="rezeptUebersicht">
-        <h3>Frühstück:</h3>
-        <ul id="fruehstueckListe"></ul>
-        <h3>Mittag:</h3>
-        <ul id="mittagListe"></ul>
-        <h3>Abendessen:</h3>
-        <ul id="abendListe"></ul>
+        <section id="secondSection">
+          <h2>Rezeptübersicht:</h2>
+          <div id="rezeptUebersicht">
+            <h3>Frühstück:</h3>
+            <ul id="fruehstueckListe"></ul>
+            <h3>Mittag:</h3>
+            <ul id="mittagListe"></ul>
+            <h3>Abendessen:</h3>
+            <ul id="abendListe"></ul>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <section id="thirdSection">
-      <h2>Wochenplaner:</h2>
-      <div id="essenPlaner">
-        <h3>Frühstück:</h3>
-        <div id="fruehstueckPlaner"></div>
-        <h3>Mittag:</h3>
-        <div id="mittagPlaner"></div>
-        <h3>Abendessen:</h3>
-        <div id="abendPlaner"></div>
+      <div id="rechteSeite">
+        <section id="thirdSection">
+          <h2>Wochenplaner:</h2>
+          <form id="wochenplanForm">
+            <h3>Frühstück:</h3>
+            <div>
+              <label for="fruehstueck-1">Montag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Dienstag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Mittwoch:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Donnerstag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Freitag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Samstag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+            <div>
+              <label for="fruehstueck-1">Sonntag:</label>
+              <select id="fruehstueck-1" name="fruehstueck[]"></select>
+            </div>
+
+            <h3>Mittag:</h3>
+            <div>
+              <label for="mittag-1">Montag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Dienstag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Mittwoch:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Donnerstag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Freitag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Samstag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+            <div>
+              <label for="mittag-1">Sonntag:</label>
+              <select name="mittag[]" id="mittag-1"></select>
+            </div>
+
+            <h3>Abendessen:</h3>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+            <div>
+              <label for="abendessen-1">Montag:</label>
+              <select name="abendessen[]" id="abendessen-1"></select>
+            </div>
+
+            <button type="submit">Wochenplan speichern</button>
+          </form>
+        </section>
       </div>
-      <button id="startPlanerButton">Wochenplan erstellen</button>
-      <button id="planResetButton">Reset</button>
-    </section>
+    </div>
 
     <script src="./script.js"></script>
   </body>
