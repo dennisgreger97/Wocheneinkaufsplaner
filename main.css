@@ -48,3 +48,7 @@ h2 {
 #essenPlaner h3 {
   margin-top: 10px;
 }
+
+#thirdSection button {
+  width: 300px;
+}
