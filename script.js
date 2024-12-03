@@ -51,7 +51,7 @@ form1.addEventListener("submit", function (e) {
 document.getElementById("zutatenAnzahl").addEventListener("input", function () {
   const anzahl = parseInt(this.value) || 0;
 
-  // Vorherige Zutaten-Eingabefelder löschen
+  // vorherige eingabefelder löschen (sonst werden es immer mehr)
   zutatenListe.innerHTML = "";
 
   // funktion zur flexiblen anzeige der zutaten inputs
@@ -61,7 +61,7 @@ document.getElementById("zutatenAnzahl").addEventListener("input", function () {
       <input type="text" id="zutat-${i}" placeholder="Zutat ${
       i + 1
     }" required />
-      <input type="text" id="menge-${i}" placeholder="Menge (z. B. 100g)" required />
+      <input type="text" id="menge-${i}" placeholder="Menge (z.B. 100g)" required />
     `;
     zutatenListe.appendChild(zutatDiv);
   }
