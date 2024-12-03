@@ -23,3 +23,20 @@ button {
   flex-direction: column;
   gap: 5px;
 }
+
+#rezeptUebersicht,
+h2 {
+  margin-top: 20px;
+}
+
+#rezeptUebersicht h3 {
+  margin-top: 10px;
+}
+
+#rezeptUebersicht ul {
+  list-style-type: none;
+}
+
+#rezeptUebersicht li {
+  margin: 5px 0;
+}
