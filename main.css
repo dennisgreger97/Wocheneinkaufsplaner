@@ -6,7 +6,7 @@
 
 #container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #linkeSeite {
@@ -25,7 +25,8 @@
   align-items: center;
 }
 
-form {
+form,
+#rezeptUebersicht {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -36,6 +37,7 @@ form {
 
 h2 {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 input,
@@ -49,10 +51,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
-
-#rezeptUebersicht h3 {
-  margin-top: 10px;
 }
 
 #rezeptUebersicht ul {
