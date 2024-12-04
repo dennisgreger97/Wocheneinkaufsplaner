@@ -1,6 +1,7 @@
 const form1 = document.getElementById("rezepteingabe");
 const zutatenListe = document.getElementById("zutatenListe");
 const rezepte = [];
+
 const fruehstueckListe = document.getElementById("fruehstueckListe");
 const mittagListe = document.getElementById("mittagListe");
 const abendListe = document.getElementById("abendListe");
@@ -12,7 +13,7 @@ form1.addEventListener("submit", function (e) {
   const rezeptart = document.getElementById("rezeptart").value;
   const zutatenAnzahl = document.getElementById("zutatenAnzahl").value;
 
-  const zutaten = []; // Array, um Zutaten und Mengen zu speichern
+  const zutaten = []; // für zutat und menge
 
   // erfassen der zutaten
   for (let i = 0; i < zutatenAnzahl; i++) {
@@ -35,10 +36,13 @@ form1.addEventListener("submit", function (e) {
 
   if (rezeptart === "Frühstück") {
     fruehstueckListe.appendChild(liItem);
+    updateDropdowns(fruehstueckListe, "select[name='fruehstueck[]']");
   } else if (rezeptart === "Mittag") {
     mittagListe.appendChild(liItem);
+    updateDropdowns(mittagListe, "select[name='mittag[]']");
   } else if (rezeptart === "Abendessen") {
     abendListe.appendChild(liItem);
+    updateDropdowns(abendListe, "select[name='abendessen[]']");
   }
 
   alert(
@@ -68,3 +72,18 @@ document.getElementById("zutatenAnzahl").addEventListener("input", function () {
 });
 
 // umsetzung des wochenplaners
+
+//dropdowns akutalisieren
+function updateDropdowns(liste, dropdownSelector) {
+  const dropdowns = document.querySelectorAll(dropdownSelector);
+  dropdowns.forEach((dropdown) => {
+    dropdown.innerHTML = "<option value=''>Bitte wähle:</option>";
+
+    liste.querySelectorAll("li").forEach((li) => {
+      const option = document.createElement("option");
+      option.value = li.textContent;
+      option.textContent = li.textContent;
+      dropdown.appendChild(option);
+    });
+  });
+}
