@@ -87,3 +87,38 @@ function updateDropdowns(liste, dropdownSelector) {
     });
   });
 }
+
+// wochenplan speichern
+const wochenplanForm = document.getElementById("wochenplanForm");
+const wochenplan = {
+  fruehstueck: [],
+  mittag: [],
+  abendessen: [],
+};
+
+wochenplanForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  //erfassen der ausgewählten zepten
+  const fruehstueckAuswahl = document.querySelectorAll(
+    "select[name='fruehstueck[]']"
+  );
+  const mittagAuswahl = document.querySelectorAll("select[name='mittag[]']");
+  const abendessenAuswahl = document.querySelectorAll(
+    "select[name='abendessen[]']"
+  );
+
+  //dann speichern im objekt wochenplan
+  wochenplan.fruehstueck = Array.from(fruehstueckAuswahl).map(
+    (select) => select.value
+  );
+  wochenplan.mittag = Array.from(mittagAuswahl).map((select) => select.value);
+  wochenplan.abendessen = Array.from(abendessenAuswahl).map(
+    (select) => select.value
+  );
+
+  console.log("Wochenplan gespeichert:", wochenplan);
+  console.log(rezepte);
+
+  alert("Wochenplan erfolgreich gespeichert!");
+});
