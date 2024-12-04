@@ -1,20 +1,21 @@
-const form = document.getElementById("rezepteingabe");
+const form1 = document.getElementById("rezepteingabe");
 const zutatenListe = document.getElementById("zutatenListe");
 const rezepte = [];
+
 const fruehstueckListe = document.getElementById("fruehstueckListe");
 const mittagListe = document.getElementById("mittagListe");
 const abendListe = document.getElementById("abendListe");
 
-form.addEventListener("submit", function (e) {
+form1.addEventListener("submit", function (e) {
   e.preventDefault(); // verhindert das Neuladen der Seite
 
   const rezeptname = document.getElementById("rezeptname").value;
   const rezeptart = document.getElementById("rezeptart").value;
   const zutatenAnzahl = document.getElementById("zutatenAnzahl").value;
 
-  const zutaten = []; // Array, um Zutaten und Mengen zu speichern
+  const zutaten = []; // für zutat und menge
 
-  // eingaben der zutaten
+  // erfassen der zutaten
   for (let i = 0; i < zutatenAnzahl; i++) {
     const zutatName = document.getElementById(`zutat-${i}`).value;
     const menge = document.getElementById(`menge-${i}`).value;
@@ -35,23 +36,26 @@ form.addEventListener("submit", function (e) {
 
   if (rezeptart === "Frühstück") {
     fruehstueckListe.appendChild(liItem);
+    updateDropdowns(fruehstueckListe, "select[name='fruehstueck[]']");
   } else if (rezeptart === "Mittag") {
     mittagListe.appendChild(liItem);
+    updateDropdowns(mittagListe, "select[name='mittag[]']");
   } else if (rezeptart === "Abendessen") {
     abendListe.appendChild(liItem);
+    updateDropdowns(abendListe, "select[name='abendessen[]']");
   }
 
   alert(
     `Dein Rezept "${rezeptname}" wurde erfolgreich der Rezeptesammlung hinzugefügt!`
   );
-  form.reset();
+  form1.reset();
 });
 
 // eventlistener input um auf veränderungen im eingabefeld zu reagieren
 document.getElementById("zutatenAnzahl").addEventListener("input", function () {
-  const anzahl = parseInt(this.value, 10) || 0;
+  const anzahl = parseInt(this.value) || 0;
 
-  // Vorherige Zutaten-Eingabefelder löschen
+  // vorherige eingabefelder löschen (sonst werden es immer mehr)
   zutatenListe.innerHTML = "";
 
   // funktion zur flexiblen anzeige der zutaten inputs
@@ -61,8 +65,25 @@ document.getElementById("zutatenAnzahl").addEventListener("input", function () {
       <input type="text" id="zutat-${i}" placeholder="Zutat ${
       i + 1
     }" required />
-      <input type="text" id="menge-${i}" placeholder="Menge (z. B. 100g)" required />
+      <input type="text" id="menge-${i}" placeholder="Menge (z.B. 100g)" required />
     `;
     zutatenListe.appendChild(zutatDiv);
   }
 });
+
+// umsetzung des wochenplaners
+
+//dropdowns akutalisieren
+function updateDropdowns(liste, dropdownSelector) {
+  const dropdowns = document.querySelectorAll(dropdownSelector);
+  dropdowns.forEach((dropdown) => {
+    dropdown.innerHTML = "<option value=''>Bitte wähle:</option>";
+
+    liste.querySelectorAll("li").forEach((li) => {
+      const option = document.createElement("option");
+      option.value = li.textContent;
+      option.textContent = li.textContent;
+      dropdown.appendChild(option);
+    });
+  });
+}

@@ -4,11 +4,40 @@
   box-sizing: border-box;
 }
 
-form {
+#container {
+  display: flex;
+  min-height: 100vh;
+}
+
+#linkeSeite {
+  background-color: lightblue;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#rechteSeite {
+  background-color: lightcoral;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form,
+#rezeptUebersicht {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 300px;
+  margin-bottom: 50px;
+  border: solid 1px red;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 input,
@@ -24,19 +53,15 @@ button {
   gap: 5px;
 }
 
-#rezeptUebersicht,
-h2 {
-  margin-top: 20px;
-}
-
-#rezeptUebersicht h3 {
-  margin-top: 10px;
-}
-
 #rezeptUebersicht ul {
   list-style-type: none;
 }
 
 #rezeptUebersicht li {
   margin: 5px 0;
+}
+
+#thirdSection button {
+  width: 300px;
+  margin-top: 10px;
 }
