@@ -120,7 +120,44 @@ wochenplanForm.addEventListener("submit", function (e) {
   console.log("Wochenplan gespeichert:", wochenplan);
   console.log(rezepte);
 
+  createShoppingList(wochenplan);
+
   alert("Wochenplan erfolgreich gespeichert!");
 });
 
 // speichern der zutaten
+
+function createShoppingList(wochenplan) {
+  const einkaufslisteElement = document.getElementById("einkaufsliste");
+  einkaufslisteElement.innerHTML = ""; // Einkaufslisteninhalt leeren
+
+  const shoppingList = [];
+
+  // Funktion zur Hinzufügung von Zutaten in die Einkaufsliste
+  function addIngredientsFromRecipe(recipeName) {
+    const recipe = rezepte.find((r) => r.name === recipeName);
+    if (recipe) {
+      recipe.zutaten.forEach((zutat) => {
+        // Zutaten in Einkaufsliste aufnehmen
+        const existing = shoppingList.find((item) => item.name === zutat.name);
+        if (existing) {
+          existing.count++; // Häufigkeit erhöhen, falls die Zutat schon existiert
+        } else {
+          shoppingList.push({ name: zutat.name, count: 1, menge: zutat.menge });
+        }
+      });
+    }
+  }
+
+  // Zutaten für alle Rezepte im Wochenplan sammeln
+  wochenplan.fruehstueck.forEach(addIngredientsFromRecipe);
+  wochenplan.mittag.forEach(addIngredientsFromRecipe);
+  wochenplan.abendessen.forEach(addIngredientsFromRecipe);
+
+  // Einkaufsliste im HTML ausgeben
+  shoppingList.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = `${item.count} x ${item.menge} ${item.name}`;
+    einkaufslisteElement.appendChild(li);
+  });
+}
