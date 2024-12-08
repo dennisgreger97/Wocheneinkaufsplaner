@@ -6,6 +6,12 @@ const fruehstueckListe = document.getElementById("fruehstueckListe");
 const mittagListe = document.getElementById("mittagListe");
 const abendListe = document.getElementById("abendListe");
 
+//
+function saveRezepteToLocalStorage() {
+  localStorage.setItem("rezepte", JSON.stringify(rezepte)); // Rezepte als JSON-String speichern
+}
+//
+
 form1.addEventListener("submit", function (e) {
   e.preventDefault(); // verhindert das Neuladen der Seite
 
@@ -29,6 +35,10 @@ form1.addEventListener("submit", function (e) {
   };
 
   rezepte.push(rezept);
+
+  //
+  saveRezepteToLocalStorage();
+  //
 
   // rezeptuebersicht erstellen
   const liItem = document.createElement("li");
@@ -161,3 +171,38 @@ function createShoppingList(wochenplan) {
     einkaufslisteElement.appendChild(li);
   });
 }
+
+//localStorage
+
+// Rezepte aus localStorage laden
+function loadRezepteFromLocalStorage() {
+  const storedRezepte = localStorage.getItem("rezepte");
+  if (storedRezepte) {
+    rezepte.push(...JSON.parse(storedRezepte)); // Rezepte aus localStorage in das Array einfügen
+  }
+}
+
+// Funktion zum Anzeigen der geladenen Rezepte
+function displayRezepte() {
+  rezepte.forEach((rezept) => {
+    const liItem = document.createElement("li");
+    liItem.textContent = rezept.name;
+
+    if (rezept.art === "Frühstück") {
+      fruehstueckListe.appendChild(liItem);
+      updateDropdowns(fruehstueckListe, "select[name='fruehstueck[]']");
+    } else if (rezept.art === "Mittag") {
+      mittagListe.appendChild(liItem);
+      updateDropdowns(mittagListe, "select[name='mittag[]']");
+    } else if (rezept.art === "Abendessen") {
+      abendListe.appendChild(liItem);
+      updateDropdowns(abendListe, "select[name='abendessen[]']");
+    }
+  });
+}
+
+// Beim Laden der Seite
+window.addEventListener("load", function () {
+  loadRezepteFromLocalStorage(); // Rezepte laden
+  displayRezepte(); // Rezepte anzeigen
+});
