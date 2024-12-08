@@ -122,3 +122,5 @@ wochenplanForm.addEventListener("submit", function (e) {
 
   alert("Wochenplan erfolgreich gespeichert!");
 });
+
+// speichern der zutaten
