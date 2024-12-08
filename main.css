@@ -32,7 +32,7 @@ form,
   gap: 10px;
   width: 300px;
   margin-bottom: 50px;
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 
 h2 {
